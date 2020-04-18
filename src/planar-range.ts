@@ -127,7 +127,7 @@ export class PlanarRange extends HTMLElement {
         display: inline-block;
         width: 200px;
         height: 200px;
-        border: 1px solid #d8d8d8;
+        border: 1px solid rgba(0,0,0,0.2);
       }
       #container {
         position: relative;
@@ -172,7 +172,7 @@ export class PlanarRange extends HTMLElement {
           start: (_, event) => {
             event.preventDefault();
             const rect = this.container.getBoundingClientRect();
-            viewAnchor = [rect.top || rect.x, rect.left || rect.y, rect.width, rect.height];;
+            viewAnchor = [rect.left || rect.x, rect.top || rect.y, rect.width, rect.height];
             return true;
           },
           move: (_, changedPointers) => {
@@ -180,10 +180,10 @@ export class PlanarRange extends HTMLElement {
             if (pointer) {
               const w = viewAnchor[2];
               const h = viewAnchor[3];
-              t.value = [
+              t.setValue([
                 w ? ((pointer.pageX - viewAnchor[0]) / w) : 0,
                 h ? ((pointer.pageY - viewAnchor[1]) / h) : 0
-              ];
+              ], true);
             }
           }
         });
