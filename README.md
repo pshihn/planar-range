@@ -62,3 +62,29 @@ The range element and the thumbs can be styled via CSS. The element doesn't need
 
 ## Uses
 
+## Events
+
+Each thumb fires a `change` event. The `event.details` object gives the `x`, `y` value of the thumb and its `name` attribute. 
+
+```htmls
+<planar-range>
+  <planar-range-thumb name="p1" x="0" y="0"></planar-range-thumb>
+  <planar-range-thumb name="p2" x="0.2" y="0.2"></planar-range-thumb>
+</planar-range>
+
+<script>
+  // attach to range element
+  document.querySelector('planar-range')
+    .addEventListener('change', ({ detail }) => {
+      console.log(detail.x, detail.y, detail.name);
+      // 0.2 0.2 p2
+    });
+  
+  // Or attach to individual thumb
+  document.querySelector('#p2')
+    .addEventListener('change', ({ detail }) => {
+      console.log(detail.x, detail.y, detail.name);
+      // 0.2 0.2 p2
+    });
+</script>
+```
