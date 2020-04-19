@@ -18,7 +18,7 @@ Each thumb is represented as a *\<planar-range-thumb\>* custom-element and can h
 ## Installing 
 Available on npm
 ```
-npm install planar-range --save
+npm install --save planar-range
 ```
 
 Or source it in your page
