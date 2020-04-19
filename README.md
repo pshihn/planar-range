@@ -2,7 +2,7 @@
 
 *\<planar-range\>* is a custom-element akin to HTML's standard input range. Instead of one thumb that moves linearly, this element can have as many thumbs as required, and they move in two dimensions. 
 
-Each thumb is represented as a *\<planar-range-thumb\>* custom-element and can have an `x` and `y` value between `0` and `1`. 
+Each thumb is represented as a *\<planar-range-thumb\>* custom-element and can have an `x` and `y` value. The values are always between `0` and `1`. 
   
 ![Planar range demo](https://user-images.githubusercontent.com/833927/79674185-71592800-8195-11ea-868f-a340524cda38.gif)
 
