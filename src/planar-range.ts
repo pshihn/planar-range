@@ -7,16 +7,7 @@ export interface PlanarRangeThumbValue {
 }
 
 function fire(element: HTMLElement, name: string, detail?: any) {
-  if (name) {
-    const init: CustomEventInit = {
-      bubbles: true,
-      composed: true
-    };
-    if (detail) {
-      init.detail = detail;
-    }
-    element.dispatchEvent(new CustomEvent(name, init));
-  }
+  element.dispatchEvent(new CustomEvent(name, { bubbles: true, composed: true, detail }));
 }
 
 export class PlanarRangeThumb extends HTMLElement {
