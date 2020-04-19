@@ -15,20 +15,9 @@ Each thumb is represented as a *\<planar-range-thumb\>* custom-element and can h
 
 ```
 
-## Installing 
-Available on npm
-```
-npm install --save planar-range
-```
-
-Or source it in your page
-```html
-<script type="module" src="https://unpkg.com/planar-range@latest"></script>
-```
-
 ## Styling
 
-The range element and the thumbs can be styled via CSS. The element doesn't need to be square. The values of `x` and `y` (between 0 and 1) interpolate with the width and height.
+The range element and the thumbs can be sized and styled via CSS. The element doesn't need to be square. The values of `x` and `y` (between 0 and 1) interpolate with the width and height.
 
 ![Planar range demo](https://user-images.githubusercontent.com/833927/79674189-75854580-8195-11ea-9d45-9cde244d028b.gif)
 
@@ -61,6 +50,17 @@ The range element and the thumbs can be styled via CSS. The element doesn't need
 ```
 
 ## Uses
+
+## Installing 
+Available on npm
+```
+npm install --save planar-range
+```
+
+Or source it in your page
+```html
+<script type="module" src="https://unpkg.com/planar-range@latest"></script>
+```
 
 ## Events
 
