@@ -2,3 +2,4 @@ demo
 node_modules
 tsconfig.json
 bin
+examples
