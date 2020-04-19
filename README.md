@@ -1,6 +1,6 @@
 # \<planar-range\>
 
-*\<planar-range\>* is a custom-element akin to HTML's standard input range. Instead of one thumb that moves linearly, this element can have as many thumbs as required, and they move in two dimensions. 
+*\<planar-range\>* is a custom-element akin to HTML's standard input range. Instead of one thumb that moves linearly, this element can have as many thumbs as required, and they move in two dimensions. (*2kb gzipped*)
 
 Each thumb is represented as a *\<planar-range-thumb\>* custom-element and can have an `x` and `y` value. The values are always between `0` and `1`. 
   
