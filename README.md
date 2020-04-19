@@ -64,9 +64,9 @@ The range element and the thumbs can be styled via CSS. The element doesn't need
 
 ## Events
 
-Each thumb fires a `change` event. The `event.details` object gives the `x`, `y` value of the thumb and its `name` attribute. 
+Each thumb fires a `change` event. The `event.detail` object gives the `x`, `y` value of the thumb and its `name` attribute. 
 
-```htmls
+```html
 <planar-range>
   <planar-range-thumb name="p1" x="0" y="0"></planar-range-thumb>
   <planar-range-thumb name="p2" x="0.2" y="0.2"></planar-range-thumb>
