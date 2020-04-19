@@ -3,8 +3,8 @@
 *\<planar-range\>* is a custom-element akin to HTML's standard input range (*2kb gzipped*). Instead of one thumb that moves linearly, this element can have as many thumbs as required, and they move in two dimensions. The element supports all pointer devices.
 
 Each thumb is represented as a *\<planar-range-thumb\>* custom-element and can have an `x` and `y` value. The values are always between `0` and `1`. 
-  
-![Planar range demo](https://user-images.githubusercontent.com/833927/79674185-71592800-8195-11ea-868f-a340524cda38.gif)
+
+![prange6](https://user-images.githubusercontent.com/833927/79682481-953d5d80-81d7-11ea-9f90-652274a4a6d6.gif)
 
 ```html
 <script type="module" src="......./planar-range.js"></script>
