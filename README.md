@@ -88,3 +88,15 @@ Each thumb fires a `change` event. The `event.detail` object gives the `x`, `y` 
     });
 </script>
 ```
+
+## PlanarRangeThumb *\<planar-range-thumb\>* properties
+
+**x** The numeric `x` value of the thumb. The range is between `[0, 1]`. 
+
+**y** The numeric `y` value of the thumb. The range is between `[0, 1]`. 
+
+**value** A 2D array of `[x, y]` value. e.g. `thumb.value = [0.2, 0.6];`
+
+## PlanarRange *\<planar-range\>*  properties
+
+**values** Readonly property to get the values of all the thumbs in the range. An array of Objects. Each object has the `x`, `y` value of the thumb, and its `name` attribute.
