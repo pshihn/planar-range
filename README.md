@@ -51,6 +51,12 @@ The range element and the thumbs can be sized and styled via CSS. The element do
 
 ## Uses
 
+The rane control itself is simple and kinda low-level. But you can use it to create more complex UI components like a cubic-bezier creator or a HSL based color picker
+
+![cubic bezier](https://user-images.githubusercontent.com/833927/79682226-54dce000-81d5-11ea-9e5f-76fa1683db71.gif)
+
+![HSl based color picker](https://user-images.githubusercontent.com/833927/79682298-e1879e00-81d5-11ea-8213-c889e6d60dfb.png)
+
 ## Installing 
 Available on npm
 ```
