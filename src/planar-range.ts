@@ -108,6 +108,7 @@ export class PlanarRange extends HTMLElement {
   private _container?: HTMLDivElement;
   private thumbs: PlanarRangeThumb[] = [];
   private pointerMap = new Map<PlanarRangeThumb, PointerTracker>();
+  validator?: (point: [number, number], previous: [number, number], name: string | null) => [number, number];
 
   constructor() {
     super();
@@ -171,10 +172,15 @@ export class PlanarRange extends HTMLElement {
             if (pointer) {
               const w = viewAnchor[2];
               const h = viewAnchor[3];
-              t.setValue([
-                w ? ((pointer.pageX - viewAnchor[0]) / w) : 0,
-                h ? ((pointer.pageY - viewAnchor[1]) / h) : 0
-              ], true);
+              const newX = w ? ((pointer.pageX - viewAnchor[0]) / w) : 0;
+              const newY = h ? ((pointer.pageY - viewAnchor[1]) / h) : 0;
+              if ((newX !== t.x) || (newY !== t.y)) {
+                if (this.validator) {
+                  t.setValue(this.validator([newX, newY], [t.x, t.y], t.getAttribute('name') || null), true);
+                } else {
+                  t.setValue([newX, newY], true);
+                }
+              }
             }
           }
         });

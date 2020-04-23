@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <title>planar-range demo</title>
+  <style>
+    body {
+      padding: 60px 32px;
+      margin: 0;
+      text-align: center;
+      background: #fff;
+    }
+
+    #panel {
+      width: 300px;
+      height: 300px;
+      position: relative;
+      margin: 0 auto;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    planar-range {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      border: none;
+    }
+
+    planar-range-thumb {
+      box-shadow: none;
+      border: none;
+      background: transparent;
+      width: 15px;
+      height: 15px;
+      border: 2px solid white;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="panel">
+    <canvas width="300" height="300"></canvas>
+    <planar-range>
+      <planar-range-thumb x="0.5" y="0.5"></planar-range-thumb>
+    </planar-range>
+  </div>
+
+  <script type="module" src="../lib/planar-range.js"></script>
+  <script type="module">
+    const degToRad = (deg) => Math.PI * deg / 180;
+    const range = document.querySelector('planar-range');
+    const ctx = document.querySelector('canvas').getContext('2d');
+
+    const c = 150;
+    const tr = 120;
+    const triangle = [
+      [c + tr * Math.cos(degToRad(45)), c + tr * Math.sin(degToRad(45))],
+      [c + tr * Math.cos(degToRad(-75)), c + tr * Math.sin(degToRad(-75))],
+      [c + tr * Math.cos(degToRad(-195)), c + tr * Math.sin(degToRad(-195))]
+    ]
+
+    const renderTriangle = (hue) => {
+      const g1 = ctx.createLinearGradient(triangle[1][0], triangle[1][1], triangle[2][0], triangle[2][1]);
+      g1.addColorStop(0, 'hsl(' + hue + ',0%,100%)');
+      g1.addColorStop(1, 'hsl(' + hue + ',0%,0%)');
+      let g2 = ctx.createLinearGradient(triangle[2][0], triangle[2][1], triangle[0][0], triangle[0][1]);
+      g2.addColorStop(0, `hsla(${hue}, 100%, 50%, 1)`);
+      g2.addColorStop(1, `hsla(${hue}, 100%, 100%, 0)`);
+      [g1, g2].forEach((gr) => {
+        ctx.fillStyle = gr;
+        ctx.beginPath();
+        ctx.moveTo(...triangle[0]);
+        ctx.lineTo(...triangle[1]);
+        ctx.lineTo(...triangle[2]);
+        ctx.fill();
+      });
+    };
+    renderTriangle(0);
+
+
+    const isInTriangle = (p) => {
+      const A = 1 / 2 * (-triangle[1][1] * triangle[2][0] + triangle[0][1] * (-triangle[1][0] + triangle[2][0]) + triangle[0][0] * (triangle[1][1] - triangle[2][1]) + triangle[1][0] * triangle[2][1]);
+      const sign = A < 0 ? -1 : 1;
+      const s = (triangle[0][1] * triangle[2][0] - triangle[0][0] * triangle[2][1] + (triangle[2][1] - triangle[0][1]) * p[0] + (triangle[0][0] - triangle[2][0]) * p[1]) * sign;
+      const t = (triangle[0][0] * triangle[1][1] - triangle[0][1] * triangle[1][0] + (triangle[0][1] - triangle[1][1]) * p[0] + (triangle[1][0] - triangle[0][0]) * p[1]) * sign;
+      return s > 0 && t > 0 && (s + t) < 2 * A * sign;
+    }
+
+    range.validator = (point, prevPoint) => {
+      const [x, y] = point.map((d) => d * 300);
+      if (isInTriangle([x, y])) {
+        return point;
+      }
+      return prevPoint;
+    };
+
+    document.querySelector('planar-range-thumb').addEventListener('change', ({ detail }) => {
+      const x = detail.x * 300;
+      const y = detail.y * 300;
+      const color = ctx.getImageData(x, y, 1, 1).data;
+      document.body.style.background = `rgb(${color[0]}, ${color[1]}, ${color[1]})`;
+    });
+
+
+  </script>
+</body>
+
+</html>

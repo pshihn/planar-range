@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <title>planar-range demo</title>
+  <style>
+    body {
+      padding: 60px 32px;
+      margin: 0;
+      text-align: center;
+      background: #fff;
+    }
+
+    #panel {
+      width: 310px;
+      height: 310px;
+      position: relative;
+      margin: 0 auto;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    planar-range {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: calc(100% - 2px);
+      height: calc(100% - 2px);
+      border: none;
+    }
+
+    planar-range-thumb {
+      box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+      border: none;
+      background: #000;
+      width: 15px;
+      height: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="panel">
+    <canvas width="310" height="310"></canvas>
+    <planar-range>
+      <planar-range-thumb x="0.5" y="0"></planar-range-thumb>
+    </planar-range>
+  </div>
+
+  <script type="module" src="../lib/planar-range.js"></script>
+  <script type="module">
+    const range = document.querySelector('planar-range');
+    const ctx = document.querySelector('canvas').getContext('2d');
+    ctx.strokeStyle = 'orange';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.arc(155, 155, 150, 0, Math.PI * 2);
+    ctx.stroke();
+
+    range.validator = (point) => {
+      const alpha = Math.atan2(point[1] - 0.5, point[0] - 0.5);
+      return [0.5 + 0.5 * Math.cos(alpha), 0.5 + 0.5 * Math.sin(alpha)];
+    };
+  </script>
+</body>
+
+</html>
