@@ -4,6 +4,8 @@
 
 Each thumb is represented as a *\<planar-range-thumb\>* custom-element and can have an `x` and `y` value. The values are always between `0` and `1`. 
 
+[Read full documentation](https://github.com/pshihn/planar-range/wiki/Planar-Range)
+
 ![prange6](https://user-images.githubusercontent.com/833927/79682481-953d5d80-81d7-11ea-9f90-652274a4a6d6.gif)
 
 ```html
