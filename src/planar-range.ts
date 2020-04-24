@@ -120,6 +120,7 @@ export class PlanarRange extends HTMLElement {
         width: 200px;
         height: 200px;
         border: 1px solid rgba(0,0,0,0.2);
+        touch-action: none;
       }
       #container {
         position: relative;

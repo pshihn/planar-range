@@ -1,6 +1,6 @@
 {
   "name": "planar-range",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A 2D range component ",
   "main": "lib/planar-range.js",
   "module": "lib/planar-range.js",
