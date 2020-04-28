@@ -173,8 +173,8 @@ export class PlanarRange extends HTMLElement {
             if (pointer) {
               const w = viewAnchor[2];
               const h = viewAnchor[3];
-              const newX = w ? ((pointer.pageX - viewAnchor[0]) / w) : 0;
-              const newY = h ? ((pointer.pageY - viewAnchor[1]) / h) : 0;
+              const newX = w ? ((pointer.clientX - viewAnchor[0]) / w) : 0;
+              const newY = h ? ((pointer.clientY - viewAnchor[1]) / h) : 0;
               if ((newX !== t.x) || (newY !== t.y)) {
                 if (this.validator) {
                   t.setValue(this.validator([newX, newY], [t.x, t.y], t.getAttribute('name') || null), true);
